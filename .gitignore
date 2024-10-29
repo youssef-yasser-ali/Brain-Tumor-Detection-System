@@ -1,5 +1,5 @@
 # Ignore model files
-seg_brain_tumor_model.pth
+# seg_brain_tumor_model.pth
 
 
 # Other ignores
