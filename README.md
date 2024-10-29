@@ -110,8 +110,6 @@ curl -X POST "http://127.0.0.1:8000/api/segmentation" -F "file=@<path_to_image>"
 
 ---
 
----
-
 ### Model Training Notebooks
 
 The `notebooks` folder contains Jupyter notebooks used for training the classification and segmentation models:
