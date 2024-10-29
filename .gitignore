@@ -1,0 +1,8 @@
+# Ignore model files
+seg_brain_tumor_model.pth
+
+
+# Other ignores
+*.pyc
+__pycache__/
+

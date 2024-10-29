@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brain Tumor Segmentation and Classification</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        color: #4c9baf;
+        margin-bottom: 20px;
+      }
+
+      form {
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        max-width: 600px;
+      }
+
+      input[type="file"] {
+        margin-bottom: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #4ca9df;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0c344b;
+      }
+
+      .result {
+        margin: 20px auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        max-width: 600px;
+        display: none; /* Initially hidden */
+      }
+
+      .result h2 {
+        color: #4ca9df;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Brain Tumor Segmentation and Classification App</h1>
+
+    <form
+      action="/classification/predict_classification"
+      method="post"
+      enctype="multipart/form-data"
+      id="classification-form"
+    >
+      <h2>Classify an Image</h2>
+      <input type="file" name="file" accept="image/*" required />
+      <button type="submit">Classify</button>
+    </form>
+
+    <div class="result" id="classification-result">
+      <h2>Classification Result:</h2>
+      <p id="classification-label"></p>
+    </div>
+
+    <form
+      action="/segmentation/segment"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <h2>Segment an Image</h2>
+      <input type="file" name="file" accept="image/*" required />
+      <button type="submit">Segment</button>
+    </form>
+
+    <script>
+      document.getElementById("classification-form").onsubmit = async function (
+        event
+      ) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        // Send the image to the classification endpoint
+        const response = await fetch(this.action, {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        document.getElementById("classification-label").innerText =
+          result.classification_label || "Unknown";
+        document.getElementById("classification-result").style.display =
+          "block"; 
+      };
+    </script>
+  </body>
+</html>
