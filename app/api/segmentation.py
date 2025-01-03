@@ -10,6 +10,7 @@ import numpy as np
 
 
 router = APIRouter()
+
 @router.post("/Segmentation")
 async def predict_segmentaion(file: UploadFile = File(...)):
     try:

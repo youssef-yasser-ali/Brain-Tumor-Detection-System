@@ -70,7 +70,7 @@
     <h1>Brain Tumor Segmentation and Classification App</h1>
 
     <form
-      action="/classification/predict_classification"
+      action="/api/classification"
       method="post"
       enctype="multipart/form-data"
       id="classification-form"
@@ -86,7 +86,7 @@
     </div>
 
     <form
-      action="/segmentation/segment"
+      action="/api/Segmentation"
       method="post"
       enctype="multipart/form-data"
     >
@@ -113,7 +113,7 @@
         document.getElementById("classification-label").innerText =
           result.classification_label || "Unknown";
         document.getElementById("classification-result").style.display =
-          "block"; 
+          "block";
       };
     </script>
   </body>

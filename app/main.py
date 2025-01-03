@@ -14,8 +14,7 @@ async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-
-# Routes
-
 app.include_router(segmentation.router, prefix="/api", tags=["Segmentation"])
 app.include_router(classification.router, prefix="/api", tags=["Classification"])
+
+
